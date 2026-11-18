@@ -53,13 +53,22 @@ def main() -> None:
     parser.add_argument("--initial-results", default="results/experiment_results.json")
     parser.add_argument("--trials", type=int, default=12)
     parser.add_argument("--output-dir", default="results")
+    parser.add_argument("--model", choices=list(MODEL_CONFIGS), help="Model chosen by the team; defaults to highest grouped-CV route Macro F1")
+    parser.add_argument("--cache-path", default="results/candidate_cache.joblib")
     args = parser.parse_args()
     config = json.loads(Path(args.config).read_text(encoding="utf-8"))
     initial = json.loads(Path(args.initial_results).read_text(encoding="utf-8"))
-    selected = max(initial["models"], key=lambda name: np.mean([fold["route_macro_f1"] for fold in initial["models"][name]["cv"]["folds"]]))
+    selected = args.model or max(initial["models"], key=lambda name: np.mean([fold["route_macro_f1"] for fold in initial["models"][name]["cv"]["folds"]]))
     generator = CandidateGenerator(config["candidate_radius_m"], config["candidate_top_k"])
-    train = prepare(config["data_archive"], config["train_partition"], generator)
-    student = prepare(config["data_archive"], config["development_partition"], generator)
+    cache_path = Path(args.cache_path)
+    if cache_path.exists():
+        cache = joblib.load(cache_path)
+        train, student = cache["train"], cache["student_test"]
+    else:
+        train = prepare(config["data_archive"], config["train_partition"], generator)
+        student = prepare(config["data_archive"], config["development_partition"], generator)
+        cache_path.parent.mkdir(parents=True, exist_ok=True)
+        joblib.dump({"train": train, "student_test": student, "preparation_seconds": None}, cache_path, compress=3)
     dim = dimensions(selected)
     rng = np.random.default_rng(int(config["random_seed"]))
     observed_x, observed_y, trials = [], [], []

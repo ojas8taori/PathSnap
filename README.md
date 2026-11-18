@@ -25,7 +25,7 @@ python -m venv .venv
 python scripts\run_eda.py --config configs/default.json
 python scripts\run_experiments.py --config configs/default.json
 python scripts\consolidate_cloud_runs.py
-python scripts\tune_model.py --config configs/default.json
+python scripts\tune_model.py --config configs/default.json --model hist_gradient_boosting --trials 12
 uvicorn src.api:app --host 0.0.0.0 --port 8000
 ```
 
@@ -37,10 +37,12 @@ The local machine is too slow for full candidate preparation and five-fold model
 
 After each notebook finishes, download or share the executed `.ipynb` with its outputs and the corresponding `results/cloud_<model>/` folder. Those run artifacts are needed to consolidate the comparison, choose the final model, tune it, evaluate Viterbi decoding and write the evidence-based report. The notebooks install only this repository's declared dependencies and run the shared experiment implementation; they do not contain separate model code.
 
+The eight initial run outputs were consolidated in `results/model_comparison.csv` and `results/model_comparison.png`. The team selected HistGradientBoosting for tuning; see `results/model_selection_decision.md`. Run `notebooks/09_hgb_bayesian_tuning.ipynb` in Colab next. It runs 12 Gaussian-process expected-improvement trials with five-fold trip-grouped CV, compares tuned and untuned results on the same student-test trips, and saves the trial log and tuned model artifact.
+
 ## Deployment
 
 The intended local mode runs API and UI on one machine. A split-laptop option will use the same repository: set API bind host/port and UI API base URL via environment/configuration, allow the UI host through CORS and the network firewall, start the API first, and check `/health` before opening the UI. The API owns model loading, road graph, evaluator references, prediction, and post-prediction scoring. The UI sends only a trip ID and renders returned predictions and permitted summary metrics.
 
 ## Integrity and reproducibility
 
-Training and cross-validation use complete trips as groups. Student-test trips are for development comparisons only. Evaluator trips and labels are not available in the supplied archive and will not be synthesized. Reports and plots will be generated from saved experiment outputs; unavailable results will remain marked as pending until measured.
+Training and cross-validation use complete trips as groups. Student-test trips are for development comparisons only. The evaluator package is separate and reserved for final evaluation after model and decoder choices are fixed. Reports and plots are generated from saved experiment outputs; unavailable results remain marked as pending until measured.
