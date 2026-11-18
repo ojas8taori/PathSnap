@@ -24,8 +24,8 @@ python -m venv .venv
 .venv\Scripts\python scripts\audit_dataset.py "C:\OJ\sem5\ML\hackathon\Student folder.zip" --output results\dataset_audit.json
 python scripts\run_eda.py --config configs/default.json
 python scripts\run_experiments.py --config configs/default.json
+python scripts\consolidate_cloud_runs.py
 python scripts\tune_model.py --config configs/default.json
-python scripts\evaluate_decoder.py --config configs/default.json
 uvicorn src.api:app --host 0.0.0.0 --port 8000
 ```
 
