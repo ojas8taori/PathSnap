@@ -1,0 +1,14 @@
+{
+  "data_archive": "C:/OJ/sem5/ML/hackathon/Student folder.zip",
+  "train_partition": "train",
+  "development_partition": "student_test",
+  "evaluator_partition": "evaluator_test",
+  "candidate_radius_m": 80.0,
+  "candidate_top_k": 8,
+  "random_seed": 352,
+  "cv_folds": 5,
+  "api_host": "0.0.0.0",
+  "api_port": 8000,
+  "ui_api_base_url": "http://127.0.0.1:8000",
+  "cors_origins": ["http://127.0.0.1:8501", "http://localhost:8501"]
+}

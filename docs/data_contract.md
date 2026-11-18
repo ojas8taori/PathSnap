@@ -1,0 +1,11 @@
+# Data contract and label assumptions
+
+The archive was inspected directly with `scripts/audit_dataset.py`. Each trip has whitespace-separated, headerless files. `.track` has longitude, latitude and timestamp seconds; `.nodes` has longitude and latitude, with row number as node ID; `.arcs` has integer from/to node IDs, with row number as arc ID; `.route` is an ordered list of arc IDs. GPS rows do not map to rows in the road files.
+
+The candidate classifier is binary. Arc IDs are local to a trip, so they are not shared model classes. For each GPS observation, the current training-label rule selects the nearest arc in that trip's supplied route sequence and marks the matching generated candidate as positive. This is an approximation: the route sequence has no per-observation timestamps, and a spatially nearest route arc can differ from the arc actually occupied at that time. Candidate miss rate is measured separately so classifier errors are not confused with missing candidate arcs.
+
+Candidate search indexes spherical arc midpoints and refines the nearest candidates with a local east/north segment projection. The spherical index avoids treating degrees as metres and handles trips near the longitude wrap. The exact segment projection is a local approximation, suitable for short road segments; it is not a global projected map.
+
+The audit found trips in geographically separated regions (the combined training coordinates span longitude −100.43° to 137.25° and latitude −34.65° to 61.28°). Each trip therefore needs its own local geometry calculations. Training has 7,289 non-one-second timestamp intervals, including 590 over 10 seconds and one maximum interval of 153,064 seconds. Student test has 264 non-one-second intervals, 27 over 10 seconds and a maximum of 210 seconds. Non-positive intervals were not observed.
+
+The road graphs can contain multiple undirected components. The route list is mostly connected but not perfectly: the audit found 13 disconnected consecutive arc pairs among 31,256 training route transitions and one among 3,467 student-test transitions. The supplied route should therefore be treated as a reference label with limitations, not verified physical truth.
