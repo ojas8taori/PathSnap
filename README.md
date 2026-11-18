@@ -26,6 +26,7 @@ python scripts\run_eda.py --config configs/default.json
 python scripts\run_experiments.py --config configs/default.json
 python scripts\consolidate_cloud_runs.py
 python scripts\tune_model.py --config configs/default.json --model hist_gradient_boosting --trials 12
+python scripts\evaluate_decoder.py --config configs/default.json
 uvicorn src.api:app --host 0.0.0.0 --port 8000
 ```
 
@@ -38,6 +39,8 @@ The local machine is too slow for full candidate preparation and five-fold model
 After each notebook finishes, download or share the executed `.ipynb` with its outputs and the corresponding `results/cloud_<model>/` folder. Those run artifacts are needed to consolidate the comparison, choose the final model, tune it, evaluate Viterbi decoding and write the evidence-based report. The notebooks install only this repository's declared dependencies and run the shared experiment implementation; they do not contain separate model code.
 
 The eight initial run outputs were consolidated in `results/model_comparison.csv` and `results/model_comparison.png`. The team selected HistGradientBoosting for tuning; see `results/model_selection_decision.md`. Run `notebooks/09_hgb_bayesian_tuning.ipynb` in Colab next. It runs 12 Gaussian-process expected-improvement trials with five-fold trip-grouped CV, compares tuned and untuned results on the same student-test trips, and saves the trial log and tuned model artifact.
+
+The completed tuning run and tuned artifact are recorded in `results/bayesian_tuning.json` and `artifacts/`. The next development step is `notebooks/10_hmm_viterbi_evaluation.ipynb`, which compares classifier-only and HMM/Viterbi routes on grouped CV and student-test trips, then checks a small decoder-parameter grid using student-test labels. That student selection is development tuning, not an independent final score. Keep the evaluator package out of this step.
 
 ## Deployment
 

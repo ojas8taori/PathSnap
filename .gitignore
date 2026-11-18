@@ -5,7 +5,5 @@ __pycache__/
 data/
 Student folder.zip
 PathSnap_source_bundle.zip
-artifacts/*.joblib
-artifacts/*.pkl
 results/*cache*.joblib
 results/matplotlib-config/

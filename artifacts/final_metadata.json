@@ -1,0 +1,39 @@
+{
+  "selected_model": "hist_gradient_boosting",
+  "selected_parameters": {
+    "learning_rate": 0.06559460392501215,
+    "max_iter": 167,
+    "max_leaf_nodes": 51
+  },
+  "feature_names": [
+    "distance_to_arc_m",
+    "projection_fraction",
+    "arc_length_m",
+    "heading_cosine",
+    "heading_sine",
+    "speed_mps",
+    "time_gap_seconds",
+    "previous_step_m",
+    "next_step_m",
+    "distance_rank",
+    "from_node_degree",
+    "to_node_degree"
+  ],
+  "candidate_configuration": {
+    "radius_m": 80.0,
+    "top_k": 8
+  },
+  "class_mapping": {
+    "0": "candidate arc does not equal the nearest arc on this trip's reference route",
+    "1": "candidate arc equals the nearest arc on this trip's reference route"
+  },
+  "hmm_configuration": {
+    "max_gap_seconds": 120.0,
+    "max_speed_mps": 45.0,
+    "sigma_m": 80.0,
+    "disconnected_log_penalty": -12.0
+  },
+  "seed": 352,
+  "python_version": "3.13.18",
+  "scikit_learn_version": "1.6.1"
+}
