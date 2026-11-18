@@ -1,0 +1,244 @@
+{
+  "evaluation": "reserved evaluator package; final frozen pipeline only",
+  "partition": "evaluator_test",
+  "trip_count": 10,
+  "model": "hist_gradient_boosting",
+  "model_parameters": {
+    "learning_rate": 0.06559460392501215,
+    "max_iter": 167,
+    "max_leaf_nodes": 51
+  },
+  "candidate_configuration": {
+    "radius_m": 80.0,
+    "top_k": 8
+  },
+  "hmm_configuration": {
+    "max_gap_seconds": 120.0,
+    "max_speed_mps": 45.0,
+    "sigma_m": 80.0,
+    "disconnected_log_penalty": -12.0
+  },
+  "scikit_learn_version": "1.6.1",
+  "artifact_sha256": "71c4d096222bfb5957efe4293ae870fbf774e4cd6585b92b8cf3e46b5d204198",
+  "evaluator_archive_sha256": "a425b35e6e6f8d3a919690c5df3a9a7df2f7c2de7343a01c50ccd6ecb45178a7",
+  "elapsed_seconds": 21.55,
+  "means_across_trips": {
+    "classifier_only": {
+      "top1_accuracy": 0.8081203528774736,
+      "route_macro_f1": 0.6194659844064432,
+      "sequence_exact": 0.0,
+      "route_continuity": 0.887300130181505,
+      "candidate_miss_rate": 0.02023077056105056
+    },
+    "hmm_viterbi": {
+      "top1_accuracy": 0.8735971696759867,
+      "route_macro_f1": 0.7280430992452566,
+      "sequence_exact": 0.0,
+      "route_continuity": 0.9429356016352232,
+      "candidate_miss_rate": 0.02023077056105056
+    }
+  },
+  "per_trip": [
+    {
+      "trip_id": "00000015",
+      "observations": 6854,
+      "classifier_only": {
+        "top1_accuracy": 0.5509191712868398,
+        "route_macro_f1": 0.2758984639832218,
+        "sequence_exact": false,
+        "route_continuity": 0.9169706697796586,
+        "candidate_miss_rate": 0.0011672016340822876,
+        "scored_observations": 6854
+      },
+      "hmm_viterbi": {
+        "top1_accuracy": 0.8018675226145316,
+        "route_macro_f1": 0.3678622832756163,
+        "sequence_exact": false,
+        "route_continuity": 0.9823434991974318,
+        "candidate_miss_rate": 0.0011672016340822876,
+        "scored_observations": 6854
+      }
+    },
+    {
+      "trip_id": "00000017",
+      "observations": 1346,
+      "classifier_only": {
+        "top1_accuracy": 0.8662704309063893,
+        "route_macro_f1": 0.717036731697076,
+        "sequence_exact": false,
+        "route_continuity": 0.7955390334572491,
+        "candidate_miss_rate": 0.020802377414561663,
+        "scored_observations": 1346
+      },
+      "hmm_viterbi": {
+        "top1_accuracy": 0.8967310549777118,
+        "route_macro_f1": 0.7732806455845671,
+        "sequence_exact": false,
+        "route_continuity": 0.8505576208178439,
+        "candidate_miss_rate": 0.020802377414561663,
+        "scored_observations": 1346
+      }
+    },
+    {
+      "trip_id": "00000023",
+      "observations": 458,
+      "classifier_only": {
+        "top1_accuracy": 0.8100436681222707,
+        "route_macro_f1": 0.48142408656448427,
+        "sequence_exact": false,
+        "route_continuity": 0.912472647702407,
+        "candidate_miss_rate": 0.1222707423580786,
+        "scored_observations": 458
+      },
+      "hmm_viterbi": {
+        "top1_accuracy": 0.8144104803493449,
+        "route_macro_f1": 0.47292066320399045,
+        "sequence_exact": false,
+        "route_continuity": 0.9102844638949672,
+        "candidate_miss_rate": 0.1222707423580786,
+        "scored_observations": 458
+      }
+    },
+    {
+      "trip_id": "00000030",
+      "observations": 654,
+      "classifier_only": {
+        "top1_accuracy": 0.7828746177370031,
+        "route_macro_f1": 0.6616569930300251,
+        "sequence_exact": false,
+        "route_continuity": 0.7733537519142419,
+        "candidate_miss_rate": 0.012232415902140673,
+        "scored_observations": 654
+      },
+      "hmm_viterbi": {
+        "top1_accuracy": 0.8287461773700305,
+        "route_macro_f1": 0.7729633361754903,
+        "sequence_exact": false,
+        "route_continuity": 0.8759571209800919,
+        "candidate_miss_rate": 0.012232415902140673,
+        "scored_observations": 654
+      }
+    },
+    {
+      "trip_id": "00000049",
+      "observations": 2642,
+      "classifier_only": {
+        "top1_accuracy": 0.9613928841786525,
+        "route_macro_f1": 0.8274097054431997,
+        "sequence_exact": false,
+        "route_continuity": 0.9666792881484286,
+        "candidate_miss_rate": 0.003028009084027252,
+        "scored_observations": 2642
+      },
+      "hmm_viterbi": {
+        "top1_accuracy": 0.9825889477668432,
+        "route_macro_f1": 0.938035882010739,
+        "sequence_exact": false,
+        "route_continuity": 0.9901552442256721,
+        "candidate_miss_rate": 0.003028009084027252,
+        "scored_observations": 2642
+      }
+    },
+    {
+      "trip_id": "00000059",
+      "observations": 1031,
+      "classifier_only": {
+        "top1_accuracy": 0.8865179437439379,
+        "route_macro_f1": 0.7204448784770948,
+        "sequence_exact": false,
+        "route_continuity": 0.8524271844660194,
+        "candidate_miss_rate": 0.031037827352085354,
+        "scored_observations": 1031
+      },
+      "hmm_viterbi": {
+        "top1_accuracy": 0.9282250242483027,
+        "route_macro_f1": 0.8183050509020388,
+        "sequence_exact": false,
+        "route_continuity": 0.9106796116504854,
+        "candidate_miss_rate": 0.031037827352085354,
+        "scored_observations": 1031
+      }
+    },
+    {
+      "trip_id": "00000067",
+      "observations": 916,
+      "classifier_only": {
+        "top1_accuracy": 0.7183406113537117,
+        "route_macro_f1": 0.5176320821432311,
+        "sequence_exact": false,
+        "route_continuity": 0.9453551912568307,
+        "candidate_miss_rate": 0.0,
+        "scored_observations": 916
+      },
+      "hmm_viterbi": {
+        "top1_accuracy": 0.8045851528384279,
+        "route_macro_f1": 0.7402891885886296,
+        "sequence_exact": false,
+        "route_continuity": 0.9912568306010929,
+        "candidate_miss_rate": 0.0,
+        "scored_observations": 916
+      }
+    },
+    {
+      "trip_id": "00000073",
+      "observations": 1144,
+      "classifier_only": {
+        "top1_accuracy": 0.9055944055944056,
+        "route_macro_f1": 0.6603455564693962,
+        "sequence_exact": false,
+        "route_continuity": 0.9186351706036745,
+        "candidate_miss_rate": 0.0,
+        "scored_observations": 1144
+      },
+      "hmm_viterbi": {
+        "top1_accuracy": 0.9527972027972028,
+        "route_macro_f1": 0.8319255761305226,
+        "sequence_exact": false,
+        "route_continuity": 0.9825021872265967,
+        "candidate_miss_rate": 0.0,
+        "scored_observations": 1144
+      }
+    },
+    {
+      "trip_id": "00000087",
+      "observations": 1399,
+      "classifier_only": {
+        "top1_accuracy": 0.9249463902787706,
+        "route_macro_f1": 0.8088436131575659,
+        "sequence_exact": false,
+        "route_continuity": 0.9098712446351931,
+        "candidate_miss_rate": 0.009292351679771264,
+        "scored_observations": 1399
+      },
+      "hmm_viterbi": {
+        "top1_accuracy": 0.9792709077912795,
+        "route_macro_f1": 0.9610163971832366,
+        "sequence_exact": false,
+        "route_continuity": 0.9864091559370529,
+        "candidate_miss_rate": 0.009292351679771264,
+        "scored_observations": 1399
+      }
+    },
+    {
+      "trip_id": "00000094",
+      "observations": 3230,
+      "classifier_only": {
+        "top1_accuracy": 0.6743034055727554,
+        "route_macro_f1": 0.523967733099137,
+        "sequence_exact": false,
+        "route_continuity": 0.8816971198513471,
+        "candidate_miss_rate": 0.002476780185758514,
+        "scored_observations": 3230
+      },
+      "hmm_viterbi": {
+        "top1_accuracy": 0.746749226006192,
+        "route_macro_f1": 0.6038319693977351,
+        "sequence_exact": false,
+        "route_continuity": 0.9492102818209972,
+        "candidate_miss_rate": 0.002476780185758514,
+        "scored_observations": 3230
+      }
+    }
+  ],
+  "scoring_note": "Predictions were generated from route-free trip inputs. Reference routes were read separately for server-side scoring after inference. Evaluator results were not used to select or modify model/decoder settings."
+}

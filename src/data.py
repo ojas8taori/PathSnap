@@ -36,13 +36,23 @@ def trip_ids(archive_path: str, partition: str) -> list[str]:
         found = set()
         for raw in archive.namelist():
             path = PurePosixPath(raw)
-            if len(path.parts) == 4 and path.parts[1] == partition and path.suffix == ".track":
-                found.add(path.parts[2])
+            for index, part in enumerate(path.parts[:-2]):
+                if (
+                    part == partition
+                    and index + 2 < len(path.parts)
+                    and path.parts[index + 2] == f"{path.parts[index + 1]}.track"
+                ):
+                    found.add(path.parts[index + 1])
+                    break
         return sorted(found)
 
 
 def load_trip(archive: zipfile.ZipFile, partition: str, trip_id: str) -> Trip:
-    base = f"Student folder/{partition}/{trip_id}/{trip_id}"
+    suffix = f"{partition}/{trip_id}/{trip_id}.track"
+    track_name = next((name for name in archive.namelist() if name.endswith(suffix)), None)
+    if track_name is None:
+        raise FileNotFoundError(f"trip {trip_id!r} in partition {partition!r} not found in archive")
+    base = track_name[:-len(".track")]
     track = _array(archive, base + ".track", 3)
     nodes = _array(archive, base + ".nodes", 2)
     arcs_raw = _array(archive, base + ".arcs", 2)

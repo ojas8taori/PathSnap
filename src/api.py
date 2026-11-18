@@ -15,7 +15,7 @@ from .inference import PathSnapEngine
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
 logger = logging.getLogger("pathsnap.api")
 app = FastAPI(title="PathSnap", version="0.1.0")
-origins = [item.strip() for item in os.getenv("PATHSNAP_CORS_ORIGINS", "http://localhost:8501,http://127.0.0.1:8501").split(",") if item.strip()]
+origins = [item.strip() for item in os.getenv("PATHSNAP_CORS_ORIGINS", "http://localhost:8501,http://127.0.0.1:8501,http://localhost:8502,http://127.0.0.1:8502").split(",") if item.strip()]
 app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=False, allow_methods=["GET", "POST"], allow_headers=["Content-Type"])
 engine: PathSnapEngine | None = None
 
